@@ -7,4 +7,5 @@ public class ProductModuleApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductModuleApplication.class, args);
 	}
+
 }

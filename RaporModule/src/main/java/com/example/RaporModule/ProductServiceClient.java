@@ -19,7 +19,7 @@ public class ProductServiceClient {
     public List<Product> getProductList() {
         Flux<Product> products= webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/communication/product")
+                .uri("http://productservice:8082/communication/product")
                 .retrieve()
                 .bodyToFlux(Product.class);
         return products.collectList().block();
@@ -27,7 +27,7 @@ public class ProductServiceClient {
     public Product getProductById(int productId) {
         Mono<Product> product = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v4/getProductById/{productId}", productId)
+                .uri("http://productservice:8082/api/v4/getProductById/{productId}", productId)
                 .retrieve()
                 .bodyToMono(Product.class);
 
@@ -36,7 +36,7 @@ public class ProductServiceClient {
     public Product getProductByName(String productName){
         Mono<Product> product = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v4/getProductByName/{productName}", productName)
+                .uri("http://productservice:8082/api/v4/getProductByName/{productName}", productName)
                 .retrieve()
                 .bodyToMono(Product.class);
 
@@ -45,7 +45,7 @@ public class ProductServiceClient {
     public ProductCategory getCategoryById(int id) {
         Mono<ProductCategory> category = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v4/getCategoryById/{id}", id)
+                .uri("http://productservice:8082/api/v4/getCategoryById/{id}", id)
                 .retrieve()
                 .bodyToMono(ProductCategory.class);
         return category.block();
@@ -53,7 +53,7 @@ public class ProductServiceClient {
     public List<Product> getProductListBySaleId(int saleId) {
         Flux<Product> products= webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v4/getProductsBySaleId/{saleId}",saleId)
+                .uri("http://productservice:8082/api/v4/getProductsBySaleId/{saleId}",saleId)
                 .retrieve()
                 .bodyToFlux(Product.class);
         return products.collectList().block();
@@ -61,7 +61,7 @@ public class ProductServiceClient {
     public List<Sale> getSaleList() {
         Flux<Sale> sales= webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8080/saleApi/getSaleList")
+                .uri("http://saleservice:8080/saleApi/getSaleList")
                 .retrieve()
                 .bodyToFlux(Sale.class);
         return sales.collectList().block();
@@ -69,7 +69,7 @@ public class ProductServiceClient {
     public List<Product> getProductsById(int productId){
         Flux<Product> product = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/communication/getProductById/{productId}",productId)
+                .uri("http://productservice:8082/communication/getProductById/{productId}",productId)
                 .retrieve()
                 .bodyToFlux(Product.class);
 
@@ -78,7 +78,7 @@ public class ProductServiceClient {
     public List<Sale> getSalesByNumber(int sellingNumber) {
         Flux<Sale> sales= webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8080/saleApi/getSaleByNumber/{sellingNumber}",sellingNumber)
+                .uri("http://saleservice:8080/saleApi/getSaleByNumber/{sellingNumber}",sellingNumber)
                 .retrieve()
                 .bodyToFlux(Sale.class);
         return sales.collectList().block();
@@ -87,7 +87,7 @@ public class ProductServiceClient {
     public Product getProductBySaleId(Integer saleId) {
         Mono<Product> product = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/communication/getProductsBySaleId/{saleId}",saleId)
+                .uri("http://productservice:8082/communication/getProductsBySaleId/{saleId}",saleId)
                 .retrieve()
                 .bodyToMono(Product.class);
 
@@ -96,7 +96,7 @@ public class ProductServiceClient {
     public Offer getOfferById(Integer offerId) {
         Mono<Offer> offer = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8080/saleApi/getOfferById/{offerId}",offerId)
+                .uri("http://saleservice:8080/saleApi/getOfferById/{offerId}",offerId)
                 .retrieve()
                 .bodyToMono(Offer.class);
 

@@ -17,7 +17,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private int quantity;
     private float price;
     private boolean isDeleted=false;
     private Integer CategoryId;

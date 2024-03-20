@@ -33,12 +33,6 @@ public class SaleController {
         Product product= productServiceClient.getProductById(productId);
         return product;
     }
-    @GetMapping("getProductsBySaleId/{saleId}")
-    public List<Product>getProductsBySaleId(@PathVariable int saleId){
-        logger.info("the products are on the screen by their sale id");
-        List<Product>products=productServiceClient.getProductListBySaleId(saleId);
-        return products;
-    }
     @PostMapping("sale")
     public void sale(@RequestBody List<SaleDTOSet> saleDTOSet){
         logger.info("sale is done !");
@@ -68,7 +62,7 @@ public class SaleController {
     }
     @GetMapping("getSaleList")
     public List<Sale> getSaleList(){
-        logger.info("All offers are brought");
+        logger.info("All sales are brought");
         return saleService.getSaleList();
     }
     @GetMapping("getOfferById/{offerId}")

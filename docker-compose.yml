@@ -27,6 +27,19 @@ services:
       SPRING_DATASOURCE_PASSWORD: "Gereksiz123"
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
+  raporservice:
+    build:
+      context: ./RaporModule
+    ports:
+      - "8085:8085"
+    depends_on:
+      - postgres3
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres3:5432/rapor
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "Gereksiz123"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
   postgres1:
     container_name: postgres_db1
     image: postgres
@@ -43,7 +56,7 @@ services:
     container_name: postgres_db2
     image: postgres
     ports:
-      - "5433:5432"
+      - "5444:5432"
     environment:
       - POSTGRES_PASSWORD=Gereksiz123
       - POSTGRES_USER=postgres
@@ -51,6 +64,19 @@ services:
     volumes:
       - postgres_data2:/var/lib/postgresql/data
 
+  postgres3:
+    container_name: postgres_db3
+    image: postgres
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_PASSWORD=Gereksiz123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rapor
+    volumes:
+      - postgres_data3:/var/lib/postgresql/data
+
 volumes:
   postgres_data1:
   postgres_data2:
+  postgres_data3:

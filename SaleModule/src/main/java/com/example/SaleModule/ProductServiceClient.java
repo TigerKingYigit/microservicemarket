@@ -17,7 +17,7 @@ public class ProductServiceClient {
     public List<Product> getProductList() {
         Flux<Product> products= webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/communication/product")
+                .uri("http://productservice:8082/communication/product")
                 .retrieve()
                 .bodyToFlux(Product.class);
         return products.collectList().block();
@@ -25,7 +25,7 @@ public class ProductServiceClient {
     public Product getProductById(int productId) {
         Mono<Product> product = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v4/getProductById/{productId}", productId)
+                .uri("http://productservice:8082/communication/getProductById/{productId}", productId)
                 .retrieve()
                 .bodyToMono(Product.class);
 
@@ -34,7 +34,7 @@ public class ProductServiceClient {
     public Product getProductByName(String productName){
         Mono<Product> product = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/communication/getProductByName/{productName}", productName)
+                .uri("http://productservice:8082/communication/getProductByName/{productName}", productName)
                 .retrieve()
                 .bodyToMono(Product.class);
 
@@ -43,18 +43,18 @@ public class ProductServiceClient {
     public ProductCategory getCategoryById(int id) {
         Mono<ProductCategory> category = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v4/getCategoryById/{id}", id)
+                .uri("http://productservice:8082/api/v4/getCategoryById/{id}", id)
                 .retrieve()
                 .bodyToMono(ProductCategory.class);
         return category.block();
     }
-    public List<Product> getProductListBySaleId(int saleId) {
-        Flux<Product> products= webClientBuilder.build()
-                .get()
-                .uri("http://localhost:8082/api/v4/getProductsBySaleId/{saleId}",saleId)
-                .retrieve()
-                .bodyToFlux(Product.class);
-        return products.collectList().block();
-    }
+//    public List<Product> getProductListBySaleId(int saleId) {
+//        Flux<Product> products= webClientBuilder.build()
+//                .get()
+//                .uri("http://localhost:8082/api/v4/getProductsBySaleId/{saleId}",saleId)
+//                .retrieve()
+//                .bodyToFlux(Product.class);
+//        return products.collectList().block();
+//    }
 
 }
