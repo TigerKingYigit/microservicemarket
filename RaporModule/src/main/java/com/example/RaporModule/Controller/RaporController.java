@@ -4,6 +4,8 @@ package com.example.RaporModule.Controller;
 import com.example.RaporModule.Models.SaleDTOGet;
 import com.example.RaporModule.RaporService.RaporService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("raporApi")
 public class RaporController {
+    private static final Logger logger = LogManager.getLogger(RaporController.class);
     @Autowired
     private RaporService raporService;
     /**
@@ -26,6 +29,7 @@ public class RaporController {
      * */
     @GetMapping("/getsalebynumber/{sellingNumber}")
     public SaleDTOGet getSaleDTOBySellingNumber(HttpServletRequest request, @PathVariable int sellingNumber) throws FileNotFoundException {
+        logger.info("sale is brought according to its number");
         return raporService.getSaleDTOByNumber(sellingNumber,request);
     }
     /**
@@ -33,6 +37,7 @@ public class RaporController {
      * */
     @GetMapping("/getAllSaleDtoList")
     public List<SaleDTOGet> getAllSaleDtoList(){
+        logger.info("All saleDto lists are listed");
         return raporService.getSaleDToListAll();
     }
 }

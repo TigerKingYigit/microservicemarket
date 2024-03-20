@@ -8,6 +8,8 @@ import com.example.ProductModule.Service.UserManagementService.AuthenticationSer
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 
 public class UserManagementController {
+    private static final Logger logger = LogManager.getLogger(UserManagementController.class);
 
     private final AuthenticationService service;
     /**
@@ -28,6 +31,7 @@ public class UserManagementController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
+        logger.info("User is registered !");
         return ResponseEntity.ok(service.register(request));
     }
     /**
@@ -39,6 +43,7 @@ public class UserManagementController {
             @RequestBody AuthenticationRequest request
     )
     {
+        logger.info("User is authenticated !");
         return ResponseEntity.ok(service.authenticate(request));
 
     }
@@ -53,6 +58,7 @@ public class UserManagementController {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
+        logger.info("User's token is regenerated !");
         service.refreshToken(request, response);
     }
     /**
@@ -61,6 +67,7 @@ public class UserManagementController {
      * */
     @GetMapping("/deleteUser/{id}")
     public void deleteUserById(@PathVariable Integer id){
+        logger.info("User is marked as deleted !");
         service.deleteUserById(id);
     }
     /**
@@ -71,6 +78,7 @@ public class UserManagementController {
     @GetMapping("/updateUserRole/{userId}/{role}")
     public void updateUserRole(@PathVariable Role role,
                                @PathVariable Integer userId){
+        logger.info("User's role is updated !");
         service.updateUserRole(role,userId);
     }
 
