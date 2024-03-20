@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  apigateway:
+    build:
+      context: ./ApiGateway
+    ports:
+      - "8088:8088"
+
   productservice:
     build:
       context: ./ProductModule

@@ -44,7 +44,6 @@ public class DataSeeder implements CommandLineRunner {
             product1.setName("armut");
             product1.setPrice(8);
             product1.setCategoryId(1);
-            product1.setQuantity(20);
 
 
             Product product2=new Product();
@@ -52,7 +51,6 @@ public class DataSeeder implements CommandLineRunner {
             product2.setName("kivi");
             product2.setPrice(12);
             product2.setCategoryId(2);
-            product2.setQuantity(8);
 
 
             Product product3=new Product();
@@ -60,7 +58,6 @@ public class DataSeeder implements CommandLineRunner {
             product3.setName("muz");
             product3.setPrice(25);
             product3.setCategoryId(1);
-            product3.setQuantity(14);
 
             productRepository.save(product1);
             productRepository.save(product2);
