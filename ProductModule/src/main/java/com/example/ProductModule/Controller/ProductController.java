@@ -2,8 +2,13 @@ package com.example.ProductModule.Controller;
 import com.example.ProductModule.DAO.CategoryDAO;
 import com.example.ProductModule.Models.Product;
 import com.example.ProductModule.Models.ProductCategory;
+import com.example.ProductModule.ProductModuleApplication;
+import com.example.ProductModule.Service.IProductService;
 import com.example.ProductModule.Service.ProductService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +16,17 @@ import java.util.Optional;
 @RestController
 @RequestMapping("communication")
 public class ProductController {
-    //Logger log = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private ProductService productService;
+    private static final Logger logger = LogManager.getLogger(ProductController.class);
+    private final IProductService productService;
+    public ProductController(ProductService productService){
+        this.productService=productService;
+    }
+    @RequestMapping("hello")
+    public String helloWorld(){
+        logger.debug("hello world from debug");
+        logger.error("heelo world from error");
+        return "hello !";
+    }
     @Autowired
     private CategoryDAO categoryDAO;
     @PostMapping("add")

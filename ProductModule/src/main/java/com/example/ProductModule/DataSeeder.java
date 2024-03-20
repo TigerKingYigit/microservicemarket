@@ -6,6 +6,8 @@ import com.example.ProductModule.Repository.CategoryRepository;
 import com.example.ProductModule.Repository.ProductRepository;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class DataSeeder implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Product product1=new Product();
