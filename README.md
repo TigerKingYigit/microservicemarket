@@ -11,5 +11,9 @@
 ### Built With
 ![clients](https://github.com/TigerKingYigit/microservicemarket/assets/132592547/ce625e37-c491-44f5-bf1c-b4c4e7201546)
 
+## How To Start Project
+To get this project started, we have to run all services on Editor. At the same time if want to run this project on Docker Desktop,
+we have to run all services as well.
+
 ### Contact
 # yigitozpolat9@gmail.com
